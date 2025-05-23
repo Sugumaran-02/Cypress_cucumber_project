@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('withErrorHandling', (action, errorMessage) => {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  
+    cy.once('fail', (error) => {
+      cy.screenshot(`error-${timestamp}`, { capture: 'runner' });
+      throw new Error(errorMessage || error.message);
+    });
+  
+    action();
+  });
