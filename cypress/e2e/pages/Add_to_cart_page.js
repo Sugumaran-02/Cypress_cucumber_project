@@ -62,7 +62,7 @@ class Add_to_Cart{
             if (productname.includes(productText)) {
                 cy.wrap($el).find(this.remove_product_button).click()
               cy.log("The product is removed successfully"+ productText)
-              cy.log("Check for jenkins")
+              
             }
     
           })
